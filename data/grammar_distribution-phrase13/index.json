@@ -1,0 +1,50 @@
+{
+  "id": "grammar_distribution-phrase13",
+  "input_string": "import pandas as pd\ndf = pd.DataFrame(",
+  "input_tokens": [
+    475,
+    19130,
+    439,
+    7900,
+    198,
+    3013,
+    284,
+    7900,
+    21756,
+    7
+  ],
+  "completion_tokens": [
+    5018,
+    65,
+    794,
+    1204,
+    606,
+    2247,
+    20375,
+    2247,
+    606,
+    2247,
+    20375,
+    1365,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "b",
+    "\":",
+    "[\"",
+    "one",
+    "\",\"",
+    "two",
+    "\",\"",
+    "one",
+    "\",\"",
+    "two",
+    "\"]",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

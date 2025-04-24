@@ -1,0 +1,37 @@
+{
+  "id": "grammar_distribution-phrase17",
+  "input_string": "To be or not to be, that is the ",
+  "input_tokens": [
+    1271,
+    387,
+    477,
+    539,
+    311,
+    387,
+    11,
+    430,
+    374,
+    279,
+    220
+  ],
+  "completion_tokens": [
+    5018,
+    7998,
+    1,
+    3047,
+    1091,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "question",
+    "\"",
+    ":\"",
+    "ask",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

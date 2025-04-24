@@ -1,0 +1,51 @@
+{
+  "id": "distribution-phrase23",
+  "input_string": "Describe the process of photosynthesis.",
+  "input_tokens": [
+    75885,
+    279,
+    1920,
+    315,
+    7397,
+    74767,
+    13
+  ],
+  "completion_tokens": [
+    2737,
+    2225,
+    279,
+    3177,
+    43918,
+    323,
+    3177,
+    98885,
+    25481,
+    13,
+    320,
+    90202,
+    20,
+    696,
+    20961,
+    4936
+  ],
+  "completion_strings": [
+    " including",
+    " both",
+    " the",
+    " light",
+    "-dependent",
+    " and",
+    " light",
+    "-independent",
+    " reactions",
+    ".",
+    " (",
+    "\u03c7",
+    "5",
+    ")\n\n",
+    "[T",
+    "utor"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "greedy-phrase19",
+  "input_string": "The meaning of life is ",
+  "input_tokens": [
+    791,
+    7438,
+    315,
+    2324,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    2983,
+    1210,
+    1115,
+    374,
+    264,
+    70946,
+    2077,
+    430,
+    11335,
+    389,
+    279,
+    4623,
+    315,
+    264,
+    4382,
+    11
+  ],
+  "completion_strings": [
+    "42",
+    ".\"",
+    " This",
+    " is",
+    " a",
+    " humorous",
+    " response",
+    " that",
+    " plays",
+    " on",
+    " the",
+    " idea",
+    " of",
+    " a",
+    " simple",
+    ","
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

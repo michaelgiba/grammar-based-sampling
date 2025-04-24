@@ -1,0 +1,37 @@
+{
+  "id": "grammar_distribution-phrase2",
+  "input_string": "if __name__ == \"__ma",
+  "input_tokens": [
+    333,
+    1328,
+    609,
+    565,
+    624,
+    13568,
+    1764
+  ],
+  "completion_tokens": [
+    90,
+    36189,
+    818,
+    565,
+    794,
+    1,
+    565,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"_",
+    "ne",
+    "__",
+    "\":",
+    "\"",
+    "__",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

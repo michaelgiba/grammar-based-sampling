@@ -1,0 +1,52 @@
+{
+  "id": "greedy-phrase24",
+  "input_string": "Write a haiku about the moon.",
+  "input_tokens": [
+    8144,
+    264,
+    6520,
+    39342,
+    922,
+    279,
+    18266,
+    13
+  ],
+  "completion_tokens": [
+    1701,
+    279,
+    4339,
+    330,
+    83014,
+    1,
+    323,
+    330,
+    9471,
+    3343,
+    27,
+    91,
+    408,
+    91,
+    1363,
+    14711
+  ],
+  "completion_strings": [
+    " using",
+    " the",
+    " words",
+    " \"",
+    "silver",
+    "\"",
+    " and",
+    " \"",
+    "night",
+    "\".",
+    "<",
+    "|",
+    "end",
+    "|",
+    ">\n\n",
+    "###"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "grammar_distribution-phrase0",
+  "input_string": "The letter after 'A' is?",
+  "input_tokens": [
+    791,
+    6661,
+    1306,
+    364,
+    32,
+    6,
+    374,
+    30
+  ],
+  "completion_tokens": [
+    5018,
+    2879,
+    794,
+    5018,
+    2150,
+    3332,
+    7203,
+    2247,
+    1834,
+    3332,
+    258,
+    1,
+    3500,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "section",
+    "\":",
+    "{\"",
+    "title",
+    "\":\"",
+    "article",
+    "\",\"",
+    "content",
+    "\":\"",
+    "in",
+    "\"",
+    "}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

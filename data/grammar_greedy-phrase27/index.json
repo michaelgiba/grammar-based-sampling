@@ -1,0 +1,52 @@
+{
+  "id": "grammar_greedy-phrase27",
+  "input_string": "What is the chemical formula for water?",
+  "input_tokens": [
+    3923,
+    374,
+    279,
+    11742,
+    15150,
+    369,
+    3090,
+    30
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    9399,
+    3332,
+    13284,
+    2247,
+    7998,
+    3332,
+    13284,
+    2247,
+    9399,
+    3332,
+    13284,
+    2247,
+    7998,
+    3332
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "answer",
+    "\":\"",
+    "water",
+    "\",\"",
+    "question",
+    "\":\"",
+    "water",
+    "\",\"",
+    "answer",
+    "\":\"",
+    "water",
+    "\",\"",
+    "question",
+    "\":\""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

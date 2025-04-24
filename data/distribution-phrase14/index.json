@@ -1,0 +1,49 @@
+{
+  "id": "distribution-phrase14",
+  "input_string": "def calculate_area(radius):",
+  "input_tokens": [
+    755,
+    11294,
+    15380,
+    62122,
+    1680
+  ],
+  "completion_tokens": [
+    720,
+    262,
+    3158,
+    284,
+    220,
+    18,
+    13,
+    975,
+    353,
+    10801,
+    353,
+    10801,
+    720,
+    262,
+    471,
+    3158
+  ],
+  "completion_strings": [
+    " \n",
+    "   ",
+    " area",
+    " =",
+    " ",
+    "3",
+    ".",
+    "14",
+    " *",
+    " radius",
+    " *",
+    " radius",
+    " \n",
+    "   ",
+    " return",
+    " area"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

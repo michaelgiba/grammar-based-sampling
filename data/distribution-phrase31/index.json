@@ -1,0 +1,53 @@
+{
+  "id": "distribution-phrase31",
+  "input_string": "What is the tallest mountain in the world?",
+  "input_tokens": [
+    3923,
+    374,
+    279,
+    82717,
+    16700,
+    304,
+    279,
+    1917,
+    30
+  ],
+  "completion_tokens": [
+    10640,
+    87578,
+    271,
+    19149,
+    374,
+    220,
+    23,
+    11,
+    24951,
+    20645,
+    16615,
+    13,
+    2057,
+    279,
+    24379,
+    4459
+  ],
+  "completion_strings": [
+    " Mount",
+    " Everest",
+    "\n\n",
+    " Mountain",
+    " is",
+    " ",
+    "8",
+    ",",
+    "848",
+    " meters",
+    " tall",
+    ".",
+    " To",
+    " the",
+    " nearest",
+    " whole"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

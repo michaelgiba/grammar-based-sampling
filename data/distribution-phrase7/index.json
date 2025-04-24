@@ -1,0 +1,49 @@
+{
+  "id": "distribution-phrase7",
+  "input_string": "Hello my name is ",
+  "input_tokens": [
+    9906,
+    856,
+    836,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    18,
+    865,
+    220,
+    18,
+    0,
+    1148,
+    374,
+    701,
+    836,
+    30,
+    2153,
+    702,
+    723,
+    882,
+    1420,
+    9720
+  ],
+  "completion_strings": [
+    "3",
+    " x",
+    " ",
+    "3",
+    "!",
+    " what",
+    " is",
+    " your",
+    " name",
+    "?",
+    "\\\"",
+    "\"\n",
+    "add",
+    "user",
+    "(this",
+    ".str"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

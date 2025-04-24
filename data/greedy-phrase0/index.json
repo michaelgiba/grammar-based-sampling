@@ -1,0 +1,52 @@
+{
+  "id": "greedy-phrase0",
+  "input_string": "The letter after 'A' is?",
+  "input_tokens": [
+    791,
+    6661,
+    1306,
+    364,
+    32,
+    6,
+    374,
+    30
+  ],
+  "completion_tokens": [
+    694,
+    4620,
+    1500,
+    79,
+    1363,
+    8085,
+    1822,
+    4620,
+    29,
+    16533,
+    7920,
+    4620,
+    1500,
+    79,
+    1363,
+    8085
+  ],
+  "completion_strings": [
+    " </",
+    "strong",
+    "></",
+    "p",
+    ">\n\n",
+    "<p",
+    "><",
+    "strong",
+    ">",
+    "Answer",
+    ":</",
+    "strong",
+    "></",
+    "p",
+    ">\n\n",
+    "<p"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "grammar_distribution-phrase19",
+  "input_string": "The meaning of life is ",
+  "input_tokens": [
+    791,
+    7438,
+    315,
+    2324,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    14789,
+    794,
+    1204,
+    91209,
+    2247,
+    258,
+    22805,
+    2247,
+    359,
+    1868,
+    481,
+    2247,
+    67646,
+    2247
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "life",
+    "\":",
+    "[\"",
+    "noun",
+    "\",\"",
+    "in",
+    "animate",
+    "\",\"",
+    "un",
+    "count",
+    "able",
+    "\",\"",
+    "plural",
+    "\",\""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

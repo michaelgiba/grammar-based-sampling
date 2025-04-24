@@ -1,0 +1,53 @@
+{
+  "id": "greedy-phrase15",
+  "input_string": "The quick brown fox jumps over the lazy ",
+  "input_tokens": [
+    791,
+    4062,
+    14198,
+    39935,
+    35308,
+    927,
+    279,
+    16053,
+    220
+  ],
+  "completion_tokens": [
+    5679,
+    1210,
+    1492,
+    330,
+    791,
+    4062,
+    14198,
+    39935,
+    35308,
+    927,
+    279,
+    16053,
+    5679,
+    1210,
+    100257,
+    198
+  ],
+  "completion_strings": [
+    " dog",
+    ".\"",
+    " ->",
+    " \"",
+    "The",
+    " quick",
+    " brown",
+    " fox",
+    " jumps",
+    " over",
+    " the",
+    " lazy",
+    " dog",
+    ".\"",
+    "",
+    "\n"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "grammar_distribution-phrase24",
+  "input_string": "Write a haiku about the moon.",
+  "input_tokens": [
+    8144,
+    264,
+    6520,
+    39342,
+    922,
+    279,
+    18266,
+    13
+  ],
+  "completion_tokens": [
+    90,
+    64407,
+    3332,
+    943,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"value",
+    "\":\"",
+    "new",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "grammar_distribution-phrase23",
+  "input_string": "Describe the process of photosynthesis.",
+  "input_tokens": [
+    75885,
+    279,
+    1920,
+    315,
+    7397,
+    74767,
+    13
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    64,
+    1,
+    3047,
+    65,
+    1,
+    1359,
+    66,
+    3332,
+    67,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "a",
+    "\"",
+    ":\"",
+    "b",
+    "\"",
+    ",\"",
+    "c",
+    "\":\"",
+    "d",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

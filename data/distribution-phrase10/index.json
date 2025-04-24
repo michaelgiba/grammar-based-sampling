@@ -1,0 +1,51 @@
+{
+  "id": "distribution-phrase10",
+  "input_string": "What is the capital of Australia?",
+  "input_tokens": [
+    3923,
+    374,
+    279,
+    6864,
+    315,
+    8494,
+    30
+  ],
+  "completion_tokens": [
+    100265,
+    100264,
+    78191,
+    100266,
+    791,
+    6864,
+    315,
+    8494,
+    374,
+    69890,
+    13,
+    69890,
+    17482,
+    439,
+    279,
+    5054
+  ],
+  "completion_strings": [
+    "",
+    "",
+    "assistant",
+    "",
+    "The",
+    " capital",
+    " of",
+    " Australia",
+    " is",
+    " Canberra",
+    ".",
+    " Canberra",
+    " serves",
+    " as",
+    " the",
+    " political"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

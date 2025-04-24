@@ -1,0 +1,51 @@
+{
+  "id": "distribution-phrase2",
+  "input_string": "if __name__ == \"__ma",
+  "input_tokens": [
+    333,
+    1328,
+    609,
+    565,
+    624,
+    13568,
+    1764
+  ],
+  "completion_tokens": [
+    21762,
+    262,
+    1925,
+    746,
+    37823,
+    3484,
+    114,
+    25005,
+    244,
+    68408,
+    57183,
+    52591,
+    10110,
+    18424,
+    23249,
+    58085
+  ],
+  "completion_strings": [
+    "__\":\n",
+    "   ",
+    " main",
+    "()\n",
+    "\u30ea",
+    "|unk|",
+    "|unk|",
+    "|unk|",
+    "|unk|",
+    "\u30c7",
+    "\u30a3",
+    "\u30d5",
+    "\uff08",
+    "branch",
+    "\u3000",
+    "reserve"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

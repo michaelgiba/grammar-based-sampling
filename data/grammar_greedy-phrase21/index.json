@@ -1,0 +1,42 @@
+{
+  "id": "grammar_greedy-phrase21",
+  "input_string": "Solve the equation: 2x + 5 = 15",
+  "input_tokens": [
+    50,
+    4035,
+    279,
+    24524,
+    25,
+    220,
+    17,
+    87,
+    489,
+    220,
+    20,
+    284,
+    220,
+    868
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    11251,
+    1,
+    3047,
+    87,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "eq",
+    "\"",
+    ":\"",
+    "x",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

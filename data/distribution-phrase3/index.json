@@ -1,0 +1,52 @@
+{
+  "id": "distribution-phrase3",
+  "input_string": "My favorite place is the beach. ",
+  "input_tokens": [
+    5159,
+    7075,
+    2035,
+    374,
+    279,
+    11573,
+    13,
+    220
+  ],
+  "completion_tokens": [
+    578,
+    18435,
+    46385,
+    374,
+    779,
+    34948,
+    10560,
+    262,
+    573,
+    330,
+    791,
+    44084,
+    520,
+    279,
+    11573,
+    374
+  ],
+  "completion_strings": [
+    " The",
+    " ocean",
+    " breeze",
+    " is",
+    " so",
+    " relaxing",
+    ".\",\n",
+    "   ",
+    "\t\t\t",
+    " \"",
+    "The",
+    " sunset",
+    " at",
+    " the",
+    " beach",
+    " is"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

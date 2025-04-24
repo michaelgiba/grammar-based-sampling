@@ -1,0 +1,40 @@
+{
+  "id": "grammar_greedy-phrase19",
+  "input_string": "The meaning of life is ",
+  "input_tokens": [
+    791,
+    7438,
+    315,
+    2324,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    14789,
+    794,
+    90,
+    1,
+    14789,
+    3332,
+    14789,
+    32075,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "life",
+    "\":",
+    "{",
+    "\"",
+    "life",
+    "\":\"",
+    "life",
+    "\"}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

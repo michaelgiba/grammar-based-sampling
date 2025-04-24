@@ -1,0 +1,53 @@
+{
+  "id": "distribution-phrase30",
+  "input_string": "Explain the difference between HTTP and HTTPS.",
+  "input_tokens": [
+    849,
+    21435,
+    279,
+    6811,
+    1990,
+    10339,
+    323,
+    62144,
+    13
+  ],
+  "completion_tokens": [
+    2737,
+    1268,
+    10339,
+    22014,
+    9629,
+    4286,
+    14711,
+    6425,
+    271,
+    9412,
+    323,
+    62144,
+    527,
+    2225,
+    32885,
+    1511
+  ],
+  "completion_strings": [
+    " including",
+    " how",
+    " HTTP",
+    " sends",
+    " traffic",
+    ".\n\n\n",
+    "###",
+    " solution",
+    "\n\n",
+    "HTTP",
+    " and",
+    " HTTPS",
+    " are",
+    " both",
+    " protocols",
+    " used"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

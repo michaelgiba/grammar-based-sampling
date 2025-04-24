@@ -1,0 +1,50 @@
+{
+  "id": "greedy-phrase26",
+  "input_string": "Who painted the Mona Lisa?",
+  "input_tokens": [
+    15546,
+    24937,
+    279,
+    99883,
+    29656,
+    30
+  ],
+  "completion_tokens": [
+    100265,
+    100264,
+    78191,
+    100266,
+    791,
+    99883,
+    29656,
+    574,
+    24937,
+    555,
+    66486,
+    3067,
+    97866,
+    13,
+    459,
+    15155
+  ],
+  "completion_strings": [
+    "",
+    "",
+    "assistant",
+    "",
+    "The",
+    " Mona",
+    " Lisa",
+    " was",
+    " painted",
+    " by",
+    " Leonardo",
+    " da",
+    " Vinci",
+    ".",
+    " an",
+    " Italian"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "grammar_distribution-phrase6",
+  "input_string": "abcdefghi",
+  "input_tokens": [
+    57847,
+    72
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    87,
+    1,
+    3047,
+    87,
+    2247,
+    88,
+    3332,
+    88,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "x",
+    "\"",
+    ":\"",
+    "x",
+    "\",\"",
+    "y",
+    "\":\"",
+    "y",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

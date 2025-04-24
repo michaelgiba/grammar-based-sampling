@@ -1,0 +1,49 @@
+{
+  "id": "grammar_distribution-phrase14",
+  "input_string": "def calculate_area(radius):",
+  "input_tokens": [
+    755,
+    11294,
+    15380,
+    62122,
+    1680
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    333,
+    1,
+    3047,
+    27813,
+    1,
+    1359,
+    4903,
+    3332,
+    2554,
+    2247,
+    1531,
+    3332,
+    850,
+    9388
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "if",
+    "\"",
+    ":\"",
+    "radius",
+    "\"",
+    ",\"",
+    "area",
+    "\":\"",
+    "pi",
+    "\",\"",
+    "else",
+    "\":\"",
+    "error",
+    "\"}"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

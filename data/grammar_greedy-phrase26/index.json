@@ -1,0 +1,32 @@
+{
+  "id": "grammar_greedy-phrase26",
+  "input_string": "Who painted the Mona Lisa?",
+  "input_tokens": [
+    15546,
+    24937,
+    279,
+    99883,
+    29656,
+    30
+  ],
+  "completion_tokens": [
+    5018,
+    7998,
+    794,
+    1,
+    9399,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "question",
+    "\":",
+    "\"",
+    "answer",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "distribution-phrase28",
+  "input_string": "Convert 100 degrees Celsius to Fahrenheit.",
+  "input_tokens": [
+    12281,
+    220,
+    1041,
+    12628,
+    62447,
+    311,
+    69823,
+    13
+  ],
+  "completion_tokens": [
+    323,
+    1243,
+    5625,
+    220,
+    22,
+    20645,
+    311,
+    15271,
+    11,
+    31370,
+    279,
+    1403,
+    3135,
+    3871,
+    11,
+    323
+  ],
+  "completion_strings": [
+    " and",
+    " then",
+    " convert",
+    " ",
+    "7",
+    " meters",
+    " to",
+    " inches",
+    ",",
+    " multiply",
+    " the",
+    " two",
+    " results",
+    " together",
+    ",",
+    " and"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

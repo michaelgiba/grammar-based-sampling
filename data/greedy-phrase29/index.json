@@ -1,0 +1,53 @@
+{
+  "id": "greedy-phrase29",
+  "input_string": "Write a function that reverses a string.",
+  "input_tokens": [
+    8144,
+    264,
+    734,
+    430,
+    17888,
+    288,
+    264,
+    925,
+    13
+  ],
+  "completion_tokens": [
+    719,
+    499,
+    2011,
+    1005,
+    51362,
+    13,
+    320,
+    2201,
+    30853,
+    5535,
+    696,
+    334,
+    2566,
+    25,
+    1035,
+    12
+  ],
+  "completion_strings": [
+    " but",
+    " you",
+    " must",
+    " use",
+    " recursion",
+    ".",
+    " (",
+    "no",
+    " loops",
+    " allowed",
+    ")\n\n",
+    "**",
+    "Input",
+    ":",
+    "**\n",
+    "-"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

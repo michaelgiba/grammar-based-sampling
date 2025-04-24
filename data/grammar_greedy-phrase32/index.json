@@ -1,0 +1,53 @@
+{
+  "id": "grammar_greedy-phrase32",
+  "input_string": "Generate a JSON object representing a user profile.",
+  "input_tokens": [
+    32215,
+    264,
+    4823,
+    1665,
+    14393,
+    264,
+    1217,
+    5643,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    609,
+    794,
+    1,
+    73,
+    2194,
+    498,
+    36189,
+    307,
+    794,
+    2994,
+    1359,
+    2386,
+    3332,
+    73,
+    2194
+  ],
+  "completion_strings": [
+    "{\"",
+    "name",
+    "\":",
+    "\"",
+    "j",
+    "ane",
+    "\",",
+    "\"_",
+    "id",
+    "\":",
+    "null",
+    ",\"",
+    "email",
+    "\":\"",
+    "j",
+    "ane"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

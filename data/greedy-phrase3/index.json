@@ -1,0 +1,52 @@
+{
+  "id": "greedy-phrase3",
+  "input_string": "My favorite place is the beach. ",
+  "input_tokens": [
+    5159,
+    7075,
+    2035,
+    374,
+    279,
+    11573,
+    13,
+    220
+  ],
+  "completion_tokens": [
+    17,
+    13,
+    358,
+    1093,
+    311,
+    16587,
+    323,
+    7160,
+    14034,
+    383,
+    13,
+    220,
+    18,
+    13,
+    358,
+    4774
+  ],
+  "completion_strings": [
+    "2",
+    ".",
+    " I",
+    " like",
+    " to",
+    " swim",
+    " and",
+    " sun",
+    "bat",
+    "he",
+    ".",
+    " ",
+    "3",
+    ".",
+    " I",
+    " enjoy"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

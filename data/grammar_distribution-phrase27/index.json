@@ -1,0 +1,46 @@
+{
+  "id": "grammar_distribution-phrase27",
+  "input_string": "What is the chemical formula for water?",
+  "input_tokens": [
+    3923,
+    374,
+    279,
+    11742,
+    15150,
+    369,
+    3090,
+    30
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    7998,
+    3332,
+    82,
+    7569,
+    2247,
+    20523,
+    29634,
+    3332,
+    40619,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "question",
+    "\":\"",
+    "s",
+    "olar",
+    "\",\"",
+    "correct",
+    "_answer",
+    "\":\"",
+    "sun",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

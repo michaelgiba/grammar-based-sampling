@@ -1,0 +1,41 @@
+{
+  "id": "grammar_greedy-phrase11",
+  "input_string": "Explain the concept of quantum entanglement in simple terms.",
+  "input_tokens": [
+    849,
+    21435,
+    279,
+    7434,
+    315,
+    31228,
+    1218,
+    526,
+    1001,
+    304,
+    4382,
+    3878,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    31548,
+    372,
+    28525,
+    794,
+    1904,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "quant",
+    "um",
+    "_ent",
+    "\":",
+    "true",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "grammar_greedy-phrase18",
+  "input_string": "Roses are red, violets are ",
+  "input_tokens": [
+    49,
+    20274,
+    527,
+    2579,
+    11,
+    348,
+    822,
+    10145,
+    527,
+    220
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    12481,
+    794,
+    1904,
+    11,
+    32586,
+    3332,
+    12481,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "blue",
+    "\":",
+    "true",
+    ",",
+    "\"name",
+    "\":\"",
+    "blue",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

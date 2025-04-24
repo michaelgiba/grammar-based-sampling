@@ -1,0 +1,34 @@
+{
+  "id": "grammar_greedy-phrase3",
+  "input_string": "My favorite place is the beach. ",
+  "input_tokens": [
+    5159,
+    7075,
+    2035,
+    374,
+    279,
+    11573,
+    13,
+    220
+  ],
+  "completion_tokens": [
+    5018,
+    39590,
+    35648,
+    794,
+    2994,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "favorite",
+    "_place",
+    "\":",
+    "null",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

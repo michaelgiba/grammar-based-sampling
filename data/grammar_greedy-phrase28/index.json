@@ -1,0 +1,32 @@
+{
+  "id": "grammar_greedy-phrase28",
+  "input_string": "Convert 100 degrees Celsius to Fahrenheit.",
+  "input_tokens": [
+    12281,
+    220,
+    1041,
+    12628,
+    62447,
+    311,
+    69823,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    9399,
+    794,
+    1904,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "answer",
+    "\":",
+    "true",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

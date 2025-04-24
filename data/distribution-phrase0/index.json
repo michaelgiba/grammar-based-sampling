@@ -1,0 +1,52 @@
+{
+  "id": "distribution-phrase0",
+  "input_string": "The letter after 'A' is?",
+  "input_tokens": [
+    791,
+    6661,
+    1306,
+    364,
+    32,
+    6,
+    374,
+    30
+  ],
+  "completion_tokens": [
+    12795,
+    7184,
+    279,
+    12197,
+    1306,
+    364,
+    42,
+    6,
+    527,
+    1980,
+    3947,
+    374,
+    264,
+    6661,
+    1306,
+    364
+  ],
+  "completion_strings": [
+    ")\n\n\n\n",
+    "Now",
+    " the",
+    " letters",
+    " after",
+    " '",
+    "K",
+    "'",
+    " are",
+    "?\n\n",
+    "There",
+    " is",
+    " a",
+    " letter",
+    " after",
+    " '"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

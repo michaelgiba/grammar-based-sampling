@@ -1,0 +1,50 @@
+{
+  "id": "distribution-phrase19",
+  "input_string": "The meaning of life is ",
+  "input_tokens": [
+    791,
+    7438,
+    315,
+    2324,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    24,
+    13,
+    264,
+    4096,
+    477,
+    15813,
+    315,
+    279,
+    4367,
+    315,
+    264,
+    1732,
+    753,
+    2324,
+    994,
+    13126
+  ],
+  "completion_strings": [
+    "9",
+    ".",
+    " a",
+    " description",
+    " or",
+    " assessment",
+    " of",
+    " the",
+    " quality",
+    " of",
+    " a",
+    " person",
+    "\u2019s",
+    " life",
+    " when",
+    " considering"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

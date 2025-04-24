@@ -1,0 +1,46 @@
+{
+  "id": "distribution-phrase6",
+  "input_string": "abcdefghi",
+  "input_tokens": [
+    57847,
+    72
+  ],
+  "completion_tokens": [
+    3546,
+    803,
+    1144,
+    2595,
+    197,
+    322,
+    1789,
+    279,
+    10096,
+    315,
+    1063,
+    12239,
+    2978,
+    7177,
+    345,
+    197
+  ],
+  "completion_strings": [
+    "\\x",
+    "\");\n",
+    " \\",
+    "]\n\n",
+    "\t",
+    "//",
+    " For",
+    " the",
+    " purposes",
+    " of",
+    " some",
+    " grade",
+    " school",
+    " tests",
+    ",\n",
+    "\t"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

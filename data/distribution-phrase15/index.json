@@ -1,0 +1,53 @@
+{
+  "id": "distribution-phrase15",
+  "input_string": "The quick brown fox jumps over the lazy ",
+  "input_tokens": [
+    791,
+    4062,
+    14198,
+    39935,
+    35308,
+    927,
+    279,
+    16053,
+    220
+  ],
+  "completion_tokens": [
+    5679,
+    1,
+    3662,
+    1495,
+    960,
+    271,
+    26607,
+    1342,
+    11834,
+    721,
+    307,
+    25,
+    2564,
+    335,
+    4713,
+    567
+  ],
+  "completion_strings": [
+    " dog",
+    "\"",
+    " >>",
+    " text",
+    ".b",
+    "\n\n",
+    ">>(",
+    "text",
+    " '{",
+    " _",
+    "id",
+    ":",
+    " ...",
+    " }",
+    "')\n\n",
+    "##"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

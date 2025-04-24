@@ -1,0 +1,47 @@
+{
+  "id": "grammar_greedy-phrase23",
+  "input_string": "Describe the process of photosynthesis.",
+  "input_tokens": [
+    75885,
+    279,
+    1920,
+    315,
+    7397,
+    74767,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    882,
+    794,
+    5018,
+    609,
+    3332,
+    882,
+    2247,
+    307,
+    3332,
+    882,
+    851,
+    32075,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "user",
+    "\":",
+    "{\"",
+    "name",
+    "\":\"",
+    "user",
+    "\",\"",
+    "id",
+    "\":\"",
+    "user",
+    "_id",
+    "\"}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

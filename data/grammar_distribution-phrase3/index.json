@@ -1,0 +1,52 @@
+{
+  "id": "grammar_distribution-phrase3",
+  "input_string": "My favorite place is the beach. ",
+  "input_tokens": [
+    5159,
+    7075,
+    2035,
+    374,
+    279,
+    11573,
+    13,
+    220
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    1337,
+    794,
+    1204,
+    39590,
+    2247,
+    2050,
+    8073,
+    1,
+    16816,
+    37899,
+    2465,
+    2247,
+    39590,
+    2247
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "type",
+    "\":",
+    "[\"",
+    "favorite",
+    "\",\"",
+    "place",
+    "\"],",
+    "\"",
+    "topic",
+    "\":[\"",
+    "my",
+    "\",\"",
+    "favorite",
+    "\",\""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

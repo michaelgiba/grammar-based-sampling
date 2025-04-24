@@ -1,0 +1,45 @@
+{
+  "id": "grammar_greedy-phrase7",
+  "input_string": "Hello my name is ",
+  "input_tokens": [
+    9906,
+    856,
+    836,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    5018,
+    609,
+    794,
+    5018,
+    3983,
+    3332,
+    73,
+    986,
+    2247,
+    4354,
+    3332,
+    65339,
+    32075,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "name",
+    "\":",
+    "{\"",
+    "first",
+    "\":\"",
+    "j",
+    "ames",
+    "\",\"",
+    "last",
+    "\":\"",
+    "bond",
+    "\"}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

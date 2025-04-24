@@ -1,0 +1,45 @@
+{
+  "id": "grammar_distribution-phrase25",
+  "input_string": "List the planets in our solar system in order from the sun.",
+  "input_tokens": [
+    861,
+    279,
+    33975,
+    304,
+    1057,
+    13238,
+    1887,
+    304,
+    2015,
+    505,
+    279,
+    7160,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    11296,
+    794,
+    2994,
+    1359,
+    882,
+    794,
+    2994,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "customer",
+    "\":",
+    "null",
+    ",\"",
+    "user",
+    "\":",
+    "null",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

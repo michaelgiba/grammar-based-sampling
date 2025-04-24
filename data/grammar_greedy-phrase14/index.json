@@ -1,0 +1,49 @@
+{
+  "id": "grammar_greedy-phrase14",
+  "input_string": "def calculate_area(radius):",
+  "input_tokens": [
+    755,
+    11294,
+    15380,
+    62122,
+    1680
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    4903,
+    794,
+    90,
+    1,
+    2554,
+    794,
+    90,
+    1,
+    970,
+    794,
+    90,
+    1,
+    65748,
+    794
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "area",
+    "\":",
+    "{",
+    "\"",
+    "pi",
+    "\":",
+    "{",
+    "\"",
+    "value",
+    "\":",
+    "{",
+    "\"",
+    "multiply",
+    "\":"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

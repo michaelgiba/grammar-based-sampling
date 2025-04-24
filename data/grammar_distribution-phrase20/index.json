@@ -1,0 +1,53 @@
+{
+  "id": "grammar_distribution-phrase20",
+  "input_string": "```python\nclass MyClass:\n    def __init__(self):\n",
+  "input_tokens": [
+    74694,
+    12958,
+    198,
+    1058,
+    84926,
+    512,
+    262,
+    711,
+    1328,
+    2381,
+    3889,
+    726,
+    997
+  ],
+  "completion_tokens": [
+    5018,
+    87,
+    794,
+    2994,
+    1359,
+    88,
+    794,
+    2994,
+    1359,
+    89,
+    794,
+    2994,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "x",
+    "\":",
+    "null",
+    ",\"",
+    "y",
+    "\":",
+    "null",
+    ",\"",
+    "z",
+    "\":",
+    "null",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

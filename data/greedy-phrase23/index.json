@@ -1,0 +1,51 @@
+{
+  "id": "greedy-phrase23",
+  "input_string": "Describe the process of photosynthesis.",
+  "input_tokens": [
+    75885,
+    279,
+    1920,
+    315,
+    7397,
+    74767,
+    13
+  ],
+  "completion_tokens": [
+    2737,
+    279,
+    1925,
+    18094,
+    323,
+    279,
+    3560,
+    315,
+    37833,
+    5237,
+    25734,
+    13,
+    100265,
+    100264,
+    78191,
+    100266
+  ],
+  "completion_strings": [
+    " including",
+    " the",
+    " main",
+    " stages",
+    " and",
+    " the",
+    " role",
+    " of",
+    " chlor",
+    "oph",
+    "yll",
+    ".",
+    "",
+    "",
+    "assistant",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

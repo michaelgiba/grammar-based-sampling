@@ -1,0 +1,49 @@
+{
+  "id": "grammar_greedy-phrase30",
+  "input_string": "Explain the difference between HTTP and HTTPS.",
+  "input_tokens": [
+    849,
+    21435,
+    279,
+    6811,
+    1990,
+    10339,
+    323,
+    62144,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    882,
+    794,
+    5018,
+    609,
+    3332,
+    882,
+    2247,
+    307,
+    3332,
+    882,
+    851,
+    32075,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "user",
+    "\":",
+    "{\"",
+    "name",
+    "\":\"",
+    "user",
+    "\",\"",
+    "id",
+    "\":\"",
+    "user",
+    "_id",
+    "\"}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "grammar_distribution-phrase18",
+  "input_string": "Roses are red, violets are ",
+  "input_tokens": [
+    49,
+    20274,
+    527,
+    2579,
+    11,
+    348,
+    822,
+    10145,
+    527,
+    220
+  ],
+  "completion_tokens": [
+    90,
+    1,
+    85,
+    32012,
+    3332,
+    12481,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{",
+    "\"",
+    "v",
+    "iolet",
+    "\":\"",
+    "blue",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

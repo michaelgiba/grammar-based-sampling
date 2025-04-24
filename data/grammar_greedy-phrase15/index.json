@@ -1,0 +1,49 @@
+{
+  "id": "grammar_greedy-phrase15",
+  "input_string": "The quick brown fox jumps over the lazy ",
+  "input_tokens": [
+    791,
+    4062,
+    14198,
+    39935,
+    35308,
+    927,
+    279,
+    16053,
+    220
+  ],
+  "completion_tokens": [
+    5018,
+    4719,
+    794,
+    90,
+    1,
+    609,
+    3332,
+    50113,
+    2247,
+    3506,
+    3332,
+    11708,
+    32075,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "cat",
+    "\":",
+    "{",
+    "\"",
+    "name",
+    "\":\"",
+    "lazy",
+    "\",\"",
+    "color",
+    "\":\"",
+    "black",
+    "\"}}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

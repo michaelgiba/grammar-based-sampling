@@ -1,0 +1,49 @@
+{
+  "id": "grammar_distribution-phrase7",
+  "input_string": "Hello my name is ",
+  "input_tokens": [
+    9906,
+    856,
+    836,
+    374,
+    220
+  ],
+  "completion_tokens": [
+    5018,
+    609,
+    794,
+    5018,
+    3983,
+    3332,
+    85,
+    344,
+    1122,
+    498,
+    36189,
+    4354,
+    3332,
+    2465,
+    74,
+    9388
+  ],
+  "completion_strings": [
+    "{\"",
+    "name",
+    "\":",
+    "{\"",
+    "first",
+    "\":\"",
+    "v",
+    "iv",
+    "ian",
+    "\",",
+    "\"_",
+    "last",
+    "\":\"",
+    "my",
+    "k",
+    "\"}"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

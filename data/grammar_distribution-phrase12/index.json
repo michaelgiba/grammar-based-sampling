@@ -1,0 +1,40 @@
+{
+  "id": "grammar_distribution-phrase12",
+  "input_string": "Generate a list of 5 creative names for a new coffee shop.",
+  "input_tokens": [
+    32215,
+    264,
+    1160,
+    315,
+    220,
+    20,
+    11782,
+    5144,
+    369,
+    264,
+    502,
+    11033,
+    8221,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    27243,
+    1292,
+    794,
+    1318,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "business",
+    "_name",
+    "\":",
+    "[]",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

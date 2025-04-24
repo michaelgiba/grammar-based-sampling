@@ -1,0 +1,50 @@
+{
+  "id": "grammar_distribution-phrase26",
+  "input_string": "Who painted the Mona Lisa?",
+  "input_tokens": [
+    15546,
+    24937,
+    279,
+    99883,
+    29656,
+    30
+  ],
+  "completion_tokens": [
+    5018,
+    45213,
+    794,
+    2994,
+    1359,
+    307,
+    794,
+    2994,
+    1359,
+    2590,
+    3332,
+    9294,
+    2247,
+    3081,
+    7932,
+    794
+  ],
+  "completion_strings": [
+    "{\"",
+    "attrib",
+    "\":",
+    "null",
+    ",\"",
+    "id",
+    "\":",
+    "null",
+    ",\"",
+    "model",
+    "\":\"",
+    "attribute",
+    "\",\"",
+    "output",
+    "_buffer",
+    "\":"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

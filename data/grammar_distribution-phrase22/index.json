@@ -1,0 +1,42 @@
+{
+  "id": "grammar_distribution-phrase22",
+  "input_string": "What are the main benefits of using renewable energy?",
+  "input_tokens": [
+    3923,
+    527,
+    279,
+    1925,
+    7720,
+    315,
+    1701,
+    33268,
+    4907,
+    30
+  ],
+  "completion_tokens": [
+    5018,
+    16816,
+    3332,
+    24175,
+    278,
+    890,
+    51565,
+    1220,
+    9388,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "topic",
+    "\":\"",
+    "environment",
+    "al",
+    "_b",
+    "enef",
+    "its",
+    "\"}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

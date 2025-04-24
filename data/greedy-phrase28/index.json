@@ -1,0 +1,52 @@
+{
+  "id": "greedy-phrase28",
+  "input_string": "Convert 100 degrees Celsius to Fahrenheit.",
+  "input_tokens": [
+    12281,
+    220,
+    1041,
+    12628,
+    62447,
+    311,
+    69823,
+    13
+  ],
+  "completion_tokens": [
+    1701,
+    279,
+    15150,
+    435,
+    284,
+    356,
+    353,
+    220,
+    24,
+    14,
+    20,
+    489,
+    220,
+    843,
+    11,
+    1405
+  ],
+  "completion_strings": [
+    " using",
+    " the",
+    " formula",
+    " F",
+    " =",
+    " C",
+    " *",
+    " ",
+    "9",
+    "/",
+    "5",
+    " +",
+    " ",
+    "32",
+    ",",
+    " where"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}
