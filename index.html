@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=5">
+
+  <!-- *** Updated Title and Meta Tags for the specific post *** -->
+  <title>Grammar-Based Sampling Visualizations - michael giba's blog</title>
+  <link rel="canonical" href="michaelgiba.com/grammar-sampling-viz"> <!-- *** Update with actual post URL *** -->
+  <meta name="title" content="Grammar-Based Sampling Visualizations - michael giba">
+  <meta name="description" content="Visualizing different grammar-based text sampling techniques.">
+  <!-- *** Update description *** -->
+  <meta property="og:site_name" content="michael giba">
+  <meta property="og:title" content="Grammar-Based Sampling Visualizations - michael giba">
+  <meta property="og:type" content="article"> <!-- *** Changed to article *** -->
+  <meta property="og:url" content="michaelgiba.com/grammar-sampling-viz"> <!-- *** Update with actual post URL *** -->
+  <meta property="og:description" content="Visualizing different grammar-based text sampling techniques.">
+  <meta property="twitter:card" content="summary_large_image"> <!-- Can use summary_large_image if applicable -->
+  <meta property="twitter:url" content="michaelgiba.com/grammar-sampling-viz">
+  <!-- *** Update with actual post URL *** -->
+  <meta property="twitter:title" content="Grammar-Based Sampling Visualizations - michael giba">
+  <meta property="twitter:description" content="Visualizing different grammar-based text sampling techniques.">
+  <!-- *** End Updated Meta Tags *** -->
+  <!-- KaTeX for rendering math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+    integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"
+    integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+    integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+    crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false
+      });
+    });
+  </script>
+  <!-- End KaTeX includes -->
+  <link rel="shortcut icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E💻%3C/text%3E%3C/svg%3E">
+  <style>
+    /* Styles from the blog template */
+    .post-entry {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding: 0;
+    }
+
+    .post-thumbnail {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .post-date {
+      flex: 0 0 80px;
+      padding-right: 1rem;
+      font-size: 0.85em;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .post-details {
+      flex: 1;
+      padding: 0;
+    }
+
+    .post-details h2 {
+      margin: 0 0 0.1rem 0;
+      padding: 0;
+      font-size: 1.1em;
+      line-height: 1.2;
+    }
+
+    .post-details h2 a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .post-details .post-subtitle {
+      margin: 0;
+      padding: 0;
+      font-size: 0.9em;
+      color: #555;
+      line-height: 1.3;
+    }
+
+    /* *** Styles Copied from the Visualization HTML *** */
+    /* Basic styling */
+    /* body { font-family: sans-serif; margin: 20px; } /* Base body style likely handled by style.css */
+    .visualization-container {
+      margin-bottom: 40px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .visualization-container h2 {
+      margin-top: 0;
+    }
+
+    /* Style for the actual viz content area */
+    .viz-content {
+      min-height: 50px;
+      /* Ensure container has some height */
+      position: relative;
+      /* Needed for absolute positioning of spinner */
+    }
+
+    svg {
+      display: block;
+      margin: auto;
+    }
+
+    /* Consider if this conflicts with footer icons */
+    /* Basic Spinner Style */
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: #09f;
+      /* Or use a blog theme color */
+      animation: spin 1s ease infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -18px;
+      /* Half of height */
+      margin-left: -18px;
+      /* Half of width */
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* *** End Copied Styles *** */
+
+    /* Add any additional specific styles for the post page layout */
+    main article {
+      max-width: 1800px;
+      /* Example constraint */
+    }
+
+    main article h1 {
+      /* Style the main title of the post */
+      margin-bottom: 30px;
+    }
+
+    /* *** Added: Monospace font for headings *** */
+    main h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1><a href="/">michael giba</a></h1>
+      <nav>
+        <ul>
+          <li><a href="https://michaelgiba.github.io/" class="active">Posts</a></li> <!-- Adjust 'active' class if needed -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- *** Content from visualization HTML integrated here *** -->
+    <article>
+      <h1>Grammar-Based Sampling Quick Summary</h1>
+
+      <p class="post-date" style="text-align: left; margin-top: -20px; margin-bottom: 20px; color: #666;">April 25, 2025
+      </p>
+      <div
+        style="border-left: 4px solid #FB8C00; padding-left: 15px; margin-left: 20px; background-color: #fff5e6; margin-top: 1em; margin-bottom: 1em;">
+        <p>This short post intends to give an overview of sampling and then focus on a specific type of sampling useful
+          for
+          structured outputs in models.
+        </p>
+      </div>
+
+
+      <p>During inference, LLMs generate sequences of "tokens"
+        the primitives that these systems string together to produce sentences.
+        First these transformer-based machines produce raw scores or "logits" over the set of possible tokens and then
+        "sampling" decides which token to choose given those scores. </p>
+
+      <div class="visualization-container">
+        <svg width="100%" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- LLM input/processing section -->
+          <rect x="50" y="70" width="200" height="160" rx="10" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" />
+          <text x="150" y="50" text-anchor="middle" font-weight="bold" font-size="16">Language Model</text>
+
+          <!-- Input tokens -->
+          <rect x="70" y="100" width="50" height="30" rx="5" fill="#bbdefb" stroke="#1976d2" />
+          <text x="95" y="120" text-anchor="middle">The</text>
+          <rect x="130" y="100" width="50" height="30" rx="5" fill="#bbdefb" stroke="#1976d2" />
+          <text x="155" y="120" text-anchor="middle">cat</text>
+          <rect x="190" y="100" width="40" height="30" rx="5" fill="#bbdefb" stroke="#1976d2" />
+          <text x="210" y="120" text-anchor="middle">is</text>
+
+          <!-- Logits section -->
+          <rect x="300" y="70" width="250" height="160" rx="10" fill="#fff3e0" stroke="#ff9800" stroke-width="2" />
+          <text x="425" y="50" text-anchor="middle" font-weight="bold" font-size="16">Logits (Raw Scores)</text>
+
+          <!-- Logit bars -->
+          <rect x="320" y="170" width="30" height="30" fill="#ffcc80" />
+          <text x="335" y="190" text-anchor="middle">big</text>
+          <rect x="320" y="140" width="30" height="30" fill="#ffcc80" />
+          <rect x="320" y="110" width="30" height="30" fill="#ffcc80" />
+
+          <rect x="370" y="150" width="30" height="50" fill="#ffb74d" />
+          <text x="385" y="190" text-anchor="middle">small</text>
+          <rect x="370" y="120" width="30" height="30" fill="#ffb74d" />
+
+          <rect x="420" y="100" width="30" height="100" fill="#ff9800" />
+          <text x="435" y="190" text-anchor="middle">cute</text>
+
+          <rect x="470" y="160" width="30" height="40" fill="#ffcc80" />
+          <text x="485" y="190" text-anchor="middle">...</text>
+
+          <!-- Sampling section -->
+          <rect x="600" y="70" width="150" height="160" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" />
+          <text x="675" y="50" text-anchor="middle" font-weight="bold" font-size="16">Sampling</text>
+
+          <!-- Selected token -->
+          <rect x="635" y="130" width="80" height="40" rx="5" fill="#81c784" stroke="#388e3c" stroke-width="2" />
+          <text x="675" y="155" text-anchor="middle" font-weight="bold">cute</text>
+
+          <!-- Arrows connecting sections -->
+          <path d="M250 150 L300 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+          <path d="M550 150 L600 150" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+
+          <!-- Arrow marker definition -->
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+            </marker>
+          </defs>
+
+          <!-- Labels -->
+          <text x="150" y="250" text-anchor="middle" font-size="14">1. Process input tokens</text>
+          <text x="425" y="250" text-anchor="middle" font-size="14">2. Generate logits for possible next tokens</text>
+          <text x="675" y="250" text-anchor="middle" font-size="14">3. Sample next token</text>
+        </svg>
+      </div>
+
+
+      <h3><strong>Greedy Sampling</strong></h3>
+
+      <p>
+        The simplest approach possible here is just to take the token with the largest logit at each timestep and this
+        is a perfectly
+        viable option. Below you can see through a visualization what this looks for real completions of sample
+        phrases thanks to <a href="https://huggingface.co/microsoft/phi-4">phi-4</a>
+      </p>
+
+      <div
+        style="border-left: 4px solid #FB8C00; padding-left: 15px; margin-left: 20px; background-color: #fff5e6; margin-top: 1em; margin-bottom: 1em;">
+        <p>To generate all of the below visualizations I added custom <code>logit_processors</code> in a script wrapping
+          llama.cpp inference. This let me
+          both record and manipulate the sampler inputs/outputs. You can find the code <a href="#">here.</a>
+        </p>
+      </div>
+
+      <!-- Add containers for your visualizations here -->
+
+      <div id="greedy-sampling-viz" class="visualization-container">
+        <div class="viz-content">
+          <div class="spinner"></div>
+          <!-- Visualization will be mounted here by JS -->
+        </div>
+      </div>
+
+
+      <p>
+        As you can see, a token could represent more than one character to the model. Tokens are really just strings of
+        bytes.
+      </p>
+
+
+      <h3><strong>Softmax Sampling</strong></h3>
+      <p>
+        Being greedy with token selection is often not what we want. Instead we might want some variability in our
+        sampling.
+        It is common to transform the logits from the model into a distribution through a nice stable mechanism like
+        applying
+        the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank" rel="noopener noreferrer">softmax
+          function</a>. Once we have reinterpreted these as probabilities, we can sample from them like expected.
+      </p>
+
+      <div id="softmax-sampling-viz" class="visualization-container">
+        <div class="viz-content">
+          <div class="spinner"></div>
+          <!-- Visualization will be mounted here by JS -->
+        </div>
+      </div>
+
+      <div
+      style="border-left: 4px solid #FB8C00; padding-left: 15px; margin-left: 20px; background-color: #fff5e6; margin-top: 1em; margin-bottom: 1em;">
+      <p>
+        Notice that the model is sometimes not very sure about any particular token option (i.e the single-timestep probability has a high <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)" target="_blank" rel="noopener noreferrer">entropy</a>)
+        This can result in some unlikely samplings which lead the model on vastly different future trajectories.
+      </p>
+      </div>
+
+      <h3>Constrained Sampling</h3>
+
+      <p>
+        But what if we want to generate outputs with a strict format or an enumerable set of options?
+        For example, what if you wanted to only have a model respond "true" or "false" to a specific question, or what
+        if you wanted to force the model responses to fit a specific JSON or YAML schema?
+      </p>
+      <p>
+        This is where grammar-constrained generations can help. If we can represent our desired output in a specific
+        form, we can programatically constrain the sampling to guarantee the outputs
+        will match those rules. At each step of the model generation process we take our generation so far $t_0 \dots
+        t_i$ and:
+      <ol>
+        <li>Get the logits from the model for $t_{i+1}$</li>
+        <li>Ask our rules if $t_0 \dots t_{i+1}$ would be valid, if not we set its score to $-\infty$</li>
+        <li>Perform one of our conventional sampling techniques across the valid options</li>
+      </ol>
+
+      <div class="visualization-container">
+        <svg width="100%" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Current token sequence -->
+          <g class="current-tokens">
+            <text x="400" y="50" text-anchor="middle" font-weight="bold" font-size="16">Grammar-Constrained Sampling</text>
+            
+            <rect x="50" y="100" width="60" height="40" rx="5" fill="#e3f2fd" stroke="#2196f3" />
+            <text x="80" y="125" text-anchor="middle" font-size="14">t₀</text>
+            
+            <rect x="120" y="100" width="60" height="40" rx="5" fill="#e3f2fd" stroke="#2196f3" />
+            <text x="150" y="125" text-anchor="middle" font-size="14">t₁</text>
+            
+            <text x="200" y="125" text-anchor="middle" font-size="14">...</text>
+            
+            <rect x="230" y="100" width="60" height="40" rx="5" fill="#e3f2fd" stroke="#2196f3" />
+            <text x="260" y="125" text-anchor="middle" font-size="14">tᵢ</text>
+            
+            <text x="300" y="125" text-anchor="middle" font-size="18" font-weight="bold">?</text>
+          </g>
+          
+          <!-- Step 1: Get logits -->
+          <g class="step-1">
+            <rect x="50" y="180" width="240" height="60" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" />
+            <text x="170" y="215" text-anchor="middle" font-size="14">1. Generate logits for t(i+1)</text>
+            
+            <!-- Logit outputs -->
+            <rect x="50" y="260" width="50" height="80" rx="0" fill="#a5d6a7" />
+            <text x="75" y="350" text-anchor="middle" font-size="12">token A</text>
+            
+            <rect x="110" y="280" width="50" height="60" rx="0" fill="#a5d6a7" />
+            <text x="135" y="350" text-anchor="middle" font-size="12">token B</text>
+            
+            <rect x="170" y="250" width="50" height="90" rx="0" fill="#a5d6a7" />
+            <text x="195" y="350" text-anchor="middle" font-size="12">token C</text>
+            
+            <rect x="230" y="290" width="50" height="50" rx="0" fill="#a5d6a7" />
+            <text x="255" y="350" text-anchor="middle" font-size="12">token D</text>
+          </g>
+          
+          <!-- Step 2: Grammar filter -->
+          <g class="step-2">
+            <rect x="350" y="180" width="240" height="60" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2" />
+            <text x="470" y="215" text-anchor="middle" font-size="14">2. Filter with grammar rules</text>
+            
+            <!-- Filtered logits -->
+            <rect x="350" y="260" width="50" height="80" rx="0" fill="#a5d6a7" />
+            <text x="375" y="350" text-anchor="middle" font-size="12">token A</text>
+            
+            <rect x="410" y="280" width="50" height="60" rx="0" fill="#ffccbc" opacity="0.5" />
+            <text x="435" y="350" text-anchor="middle" font-size="12" fill="#999">token B</text>
+            <line x1="410" y1="280" x2="460" y2="340" stroke="red" stroke-width="2" />
+            <line x1="410" y1="340" x2="460" y2="280" stroke="red" stroke-width="2" />
+            
+            <rect x="470" y="250" width="50" height="90" rx="0" fill="#a5d6a7" />
+            <text x="495" y="350" text-anchor="middle" font-size="12">token C</text>
+            
+            <rect x="530" y="290" width="50" height="50" rx="0" fill="#ffccbc" opacity="0.5" />
+            <text x="555" y="350" text-anchor="middle" font-size="12" fill="#999">token D</text>
+            <line x1="530" y1="290" x2="580" y2="340" stroke="red" stroke-width="2" />
+            <line x1="530" y1="340" x2="580" y2="290" stroke="red" stroke-width="2" />
+          </g>
+          
+          <!-- Step 3: Sample from valid -->
+          <g class="step-3">
+            <rect x="650" y="180" width="100" height="60" rx="8" fill="#e1f5fe" stroke="#03a9f4" stroke-width="2" />
+            <text x="700" y="215" text-anchor="middle" font-size="14">3. Sample</text>
+            
+            <!-- Selected token -->
+            <rect x="675" y="260" width="50" height="90" rx="5" fill="#81d4fa" stroke="#0288d1" stroke-width="2" />
+            <text x="700" y="305" text-anchor="middle" font-size="14" font-weight="bold">token C</text>
+            <text x="700" y="350" text-anchor="middle" font-size="12">Selected</text>
+          </g>
+          
+          <!-- Arrows connecting sections -->
+          <path d="M290 210 L350 210" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+          <path d="M590 210 L650 210" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+          
+          <!-- Arrow marker definition -->
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      But how do we express these rules? We can use conventional <a
+        href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammars</a>
+      </p>
+
+
+
+      <div class="grammar-definition">
+        <p>
+          The following is a grammar which defines a subset of JSON in <a
+            href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form" target="_blank"
+            rel="noopener noreferrer">EBNF</a>.
+        </p>
+
+        <pre><code>?start: object
+
+?value: object
+    | array
+    | string
+    | "true"             -> true
+    | "false"            -> false
+    | "null"             -> null
+
+array  : "[" [value ("," value)*] "]"
+object : "{" pair ("," pair)* "}"
+pair   : string ":" value
+
+letter: "a" | "b" | "c" | "d" | "e" | "f"
+    | "i" | "j" | "k" | "l" | "m" | "n"
+    | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v"
+    | "w" | "x" | "y" | "z" | "_"
+
+string : "\"" letter+ "\""</code></pre>
+        <p>
+          I passed this definition to a parser generator <a href="https://lark-parser.readthedocs.io/" target="_blank"
+            rel="noopener noreferrer">Lark</a>
+          which gave the "checker" mentioned above for validity of generated sequences at each timestep. This could then
+          be
+          used at each timestep to screen only our valid sequences of tokens, allowing us to produce the visualizations
+          below.
+        </p>
+      </div>
+
+      <h3><strong>Constrained Sampling (Greedy)</strong></h3>
+      <p>We can still use our regular-old sampling methods after we've constrained our tokens. The following are
+        greedily
+        sampled tokens from the constrained set.
+      </p>
+
+      <section id="constrained-sampling-viz" class="visualization-container">
+        <div class="viz-content">
+          <div class="spinner"></div>
+        </div>
+      </section>
+
+
+      <h3><strong>Constrained Sampling (Distributional)</strong></h3>
+      <p>Or we can also treat the constrained outputs as a distribution.</p>
+      <section id="constrained-sampling-distributional-viz" class="visualization-container"> <!-- New Section -->
+        <div class="viz-content">
+          <div class="spinner"></div>
+        </div> <!-- New Container -->
+      </section>
+    </article>
+
+    <p>
+      And that's the gist of constrainted sampling. The way this is implemented in practice to be performant can get
+      fairly complicated
+      but is even more interesting. I recommend reading the source of <a
+        href="https://github.com/ggml-org/llama.cpp/blob/master/src/llama-grammar.cpp" target="_blank"
+        rel="noopener noreferrer">llama-grammar.cpp</a> to see how llama.cpp handles the incremental
+      parsing, but the principle is the same.
+
+    </p>
+
+    <p>
+      <strong>Some Notes</strong>
+    <ol>
+      <li>
+        You might be wondering, since we know our grammar and at each generation timestep we have a fixed number of
+        options, can't we just choose from those options and find the corresponding logit with the highest value?
+        Unfortunately no
+        because of how tokenization works. Since the model thinks in tokens, the distribution it has learned internally
+        may not vibe well with our character-by-character trajectories. Concretely, if we force a generation like
+        <code>{</code> followed by
+        <code>}</code>, the tokenization scheme might have a single token for <code>{}</code>. Forcing separate
+        <code>{</code> and <code>}</code> generations can confuse the model and violate its assumptions about token
+        sequences.
+        </p>
+      </li>
+      <li>
+        <p>
+          Scanning the full set of possible tokens and checking for parse errors at each step can be slow. Instead for
+          this visualization, we can prioritize checking the highest-logit tokens first and stop after finding a
+          sufficient number of conformant options. This is akin to <a
+            href="https://huggingface.co/docs/transformers/main_classes/text_generation#top-k-sampling" target="_blank"
+            rel="noopener noreferrer">top-k sampling</a>.
+        </p>
+      </li>
+      <li>
+        <p>
+            This was not intended to be comprehensive by any measure. There are many more sampling techniques available including: <ul>
+            <li>XTC</li>
+            <li>Microstat</li>
+            <li>Penalties</li>
+            <li>Top-n Sigma</li>
+            <li>DRY</li>
+            <li>Logit-Bias</li>
+            <li>Temperature Extended</li>
+            </ul>
+            <br/>
+            We also didn't cover searching strategies which investigate more than one timestep.
+        </p>
+      </li>
+    </ol>
+    </p>
+
+    <section class="contact-section"></section>
+      <p>
+        If you have any questions or comments about this post or in general 
+        feel free to reach out to me at <a href="mailto:michaelgiba@gmail.com">michaelgiba@gmail.com</a>.
+      </p>
+    </section>
+
+    <!-- *** End Integrated Content *** -->
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2024 Michael Giba &nbsp;&bull;&nbsp;
+      <a href="https://www.linkedin.com/in/michael-giba-42720a80/" target="_blank" rel="noopener noreferrer"
+        title="LinkedIn Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="footer-icon">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
+      </a>
+      &nbsp; <!-- Add a small space -->
+      <a href="https://github.com/michaelgiba" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="footer-icon">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+      </a>
+    </p>
+  </footer>
+
+  <!-- *** Script needed for the visualizations - place near end of body *** -->
+  <!-- Ensure the path to bundle.js is correct relative to this HTML file -->
+  <script defer src="bundle.js"></script>
+</body>
+
+</html>

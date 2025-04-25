@@ -1,0 +1,53 @@
+{
+  "id": "grammar_distribution-phrase32",
+  "input_string": "Generate a JSON object representing a user profile.",
+  "input_tokens": [
+    32215,
+    264,
+    4823,
+    1665,
+    14393,
+    264,
+    1217,
+    5643,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    882,
+    1292,
+    794,
+    1,
+    64295,
+    2247,
+    2899,
+    3332,
+    3104,
+    2247,
+    2386,
+    3332,
+    64295,
+    766,
+    299
+  ],
+  "completion_strings": [
+    "{\"",
+    "user",
+    "_name",
+    "\":",
+    "\"",
+    "alice",
+    "\",\"",
+    "status",
+    "\":\"",
+    "active",
+    "\",\"",
+    "email",
+    "\":\"",
+    "alice",
+    "_f",
+    "ro"
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

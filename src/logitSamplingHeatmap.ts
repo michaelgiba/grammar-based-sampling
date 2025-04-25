@@ -21,7 +21,7 @@ export const CONFIG = {
   sampledCharFontSize: "14px",
   cellTokenFontSize: "10px",
   heatmapPadding: 1,
-  highlightBackgroundColor: "#FFFF00",
+  highlightBackgroundColor: "#AAAA00",
   highlightStrokeColor: "#FFFF00",
   highlightStrokeWidth: 4.5,
   axisTextColor: "#333",
@@ -128,7 +128,6 @@ const calculateScales = (
     .domain(d3.range(numLogits))
     .range([0, vizHeight])
     .paddingInner(0.1);
-
 
   let minLogit = d3.min(originalLogits, (step) => d3.min(step));
   let maxLogit = d3.max(originalLogits, (step) => d3.max(step));
@@ -355,14 +354,13 @@ const renderHeatmapCells = (
       (d) => d.token === sampledToken,
     );
 
-
     const cellGroup = currentGroup
       .selectAll(".cell-group")
       .data(stepData, (d) => d.token)
       .enter()
       .append("g")
       .attr("class", "cell-group")
-      .attr("transform", (_, i) => `translate(0, ${yScale(i) ?? 0})`)
+      .attr("transform", (_, i) => `translate(0, ${config.cellHeight * i})`)
       .on("mouseover", (event, d) => {
         const rank = stepData.findIndex((item) => item.token === d.token);
         if (
@@ -405,7 +403,7 @@ const renderHeatmapCells = (
       .append("rect")
       .attr("class", "logit-cell")
       .attr("width", xScale.bandwidth())
-      .attr("height", yScale.bandwidth())
+      .attr("height", config.cellHeight)
       .attr("fill", (d, i) => {
         return d3.color(colorScale(d.probability)) || "#ccc";
       })
@@ -425,12 +423,18 @@ const renderHeatmapCells = (
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "central")
       .style("font-size", config.cellTokenFontSize)
+      .style("font-weight", (_, i) => {
+        if (i === sampledTokenRank) {
+          return "bold";
+        }
+        return "normal";
+      })
       .style("fill", (d, i) => {
-        const bgColor =
-          i === sampledTokenRank
-            ? config.highlightBackgroundColor
-            : colorScale(d.logit);
-        return getTextColorForBackground(bgColor);
+        if (i === sampledTokenRank) {
+          return config.highlightBackgroundColor;
+        }
+
+        return getTextColorForBackground(colorScale(d.logit));
       })
       .style("pointer-events", "none")
       .text((d) =>
@@ -503,7 +507,6 @@ export const render = (
     availableWidth = defaultWidth;
   }
 
-
   const vizWidth = availableWidth - config.margin.left - config.margin.right;
   config.cellWidth = Math.max(
     10,
@@ -574,44 +577,24 @@ export function initSamplingWithControls(
     .style("display", "flex")
     .style("flex-direction", "column")
     .style("align-items", "stretch")
-    .style("width", "100%");
+    .style("width", "100%")
+    .style("height", "100%"); // Ensure main container takes full height if needed
 
+  // 2. Controls Container
   const controlsContainer = mainContainer
     .append("div")
     .attr("class", "viz-controls")
     .style("margin-bottom", "15px")
-    .style("padding-left", `${CONFIG.margin.left}px`);
+    .style("padding-left", `${CONFIG.margin.left}px`); // Keep left padding for alignment
 
-  const contentWrapper = mainContainer
-    .append("div")
-    .attr("class", "viz-content")
-    .style("display", "flex")
-    .style("flex-wrap", "wrap")
-    .style("gap", "16px")
-    .style("padding", "0");
-
-  contentWrapper
-    .append("div")
-    .attr("class", "info-pane")
-    .attr("contenteditable", "true")
-    .html(
-      "<p><strong>Explanation:</strong> Describe how input maps to completion.</p>",
-    )
-    .style("flex", "0 0 30%")
-    .style("min-width", "200px")
-    .style("max-width", "400px")
-    .style("padding", "8px")
-    .style("border", "1px solid #ccc")
-    .style("border-radius", "4px")
-    .style("font-size", "14px")
-    .style("line-height", "1.4");
-
-  const vizContainer = contentWrapper
+  // 3. Visualization Area
+  const vizContainer = mainContainer
     .append("div")
     .attr("class", "viz-area")
-    .style("flex", "1 1 60%")
-    .style("min-width", "0")
-    .style("overflow-x", "auto");
+    .style("flex", "1") // Allow viz area to grow and take remaining space
+    .style("min-height", "0") // Necessary for flexbox growth in some browsers
+    .style("overflow-y", "auto") // Add scroll if content overflows vertically
+    .style("overflow-x", "auto"); // Keep horizontal scroll
 
   const vizContainerId = `viz-area-${Date.now()}`;
   vizContainer.attr("id", vizContainerId);
@@ -621,6 +604,7 @@ export function initSamplingWithControls(
     return;
   }
 
+  // Populate Controls
   controlsContainer
     .append("label")
     .attr("for", "sample-select")
@@ -637,6 +621,7 @@ export function initSamplingWithControls(
     .attr("value", (_, i) => i.toString())
     .text((d) => d.id);
 
+  // Load Data Function
   const loadSelectedData = () => {
     const idx = parseInt(select.property("value"), 10);
     const item = sampleDataSets[idx];
@@ -646,13 +631,16 @@ export function initSamplingWithControls(
       return;
     }
 
-    vizContainer.html("");
+    vizContainer.html(""); // Clear only the viz area
+
+    // Add Input Text Pill
     vizContainer
       .append("div")
       .attr("class", "input-header")
       .style("font-size", "12px")
       .style("color", "#666")
       .style("margin-bottom", "4px")
+      .style("padding-left", `${CONFIG.margin.left}px`) // Align with controls
       .text("Input Text:");
 
     vizContainer
@@ -662,9 +650,10 @@ export function initSamplingWithControls(
       .style("background", "#eee")
       .style("padding", "8px 12px")
       .style("border-radius", "4px")
-      .style("font-size", "20px")
+      .style("font-size", "16px")
       .style("font-weight", "bold")
       .style("margin-bottom", "8px")
+      .style("margin-left", `${CONFIG.margin.left}px`) // Align with controls
       .text(item.inputText);
 
     vizContainer
@@ -673,32 +662,37 @@ export function initSamplingWithControls(
       .style("border-top", "1px solid #ccc")
       .style("margin", "12px 0");
 
-    // Create the header div for "Completion:"
+    // Add Completion Header and Text
     const completionHeader = vizContainer
       .append("div")
-      .attr("class", "input-header") // Re-use class if styles align, or use a new one
+      .attr("class", "completion-header")
       .style("font-size", "12px")
       .style("color", "#666")
-      .style("margin-bottom", "4px");
+      .style("margin-bottom", "4px")
+      .style("padding-left", `${CONFIG.margin.left}px`); // Align with controls
 
-    // Add the "Completion: " label text
     completionHeader.append("span").text("Completion: ");
 
-    console.log(item);
-    // Add the full completion text next to it, styled differently
     completionHeader
       .append("span")
-      .style("font-size", "12px") // Smaller font size
-      .style("color", "#333") // Optional: different color
-      .style("margin-left", "5px") // Add some space
+      .style("font-size", "12px")
+      .style("color", "#333")
+      .style("margin-left", "5px")
       .style("background", "#eee")
       .style("padding", "8px 12px")
       .style("border-radius", "4px")
-      .text(item.sampledCharacters.join("")); // Join the tokens into a single string
+      .text(item.sampledCharacters.join(""));
 
+    vizContainer
+      .append("hr")
+      .style("border", "none")
+      .style("border-top", "1px solid #ccc")
+      .style("margin", "12px 0");
+
+    // Render the actual heatmap visualization inside the vizContainer
     render(`#${vizContainerId}`, sampleDataSets[idx], vocab);
   };
 
   select.on("change", loadSelectedData);
-  loadSelectedData();
+  loadSelectedData(); // Initial load
 }

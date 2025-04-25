@@ -38,9 +38,9 @@ export const getLuminance = (color: string): number => {
 
 export const getTextColorForBackground = (backgroundColor: string): string => {
   const luminance = getLuminance(backgroundColor);
-  const dynamicTextColorThreshold = 0.4;
+  const dynamicTextColorThreshold = 0.1;
   const lightTextColor = "#f0f0f0";
-  const darkTextColor = "#1a1a1a";
+  const darkTextColor = "#000";
   return luminance > dynamicTextColorThreshold ? darkTextColor : lightTextColor;
 };
 
@@ -71,25 +71,24 @@ export const transformDataForSortedView = (
 };
 
 export function calculateSoftmax(logits: number[]): number[] {
-        if (!logits || logits.length === 0) return [];
-        const maxLogit = Math.max(...logits.filter(l => isFinite(l)), -Infinity);
-        if (!isFinite(maxLogit)) return Array(logits.length).fill(1 / logits.length); // Uniform if all are -Infinity
-        const exps = logits.map(logit => Math.exp(logit - maxLogit));
-        const sumExps = exps.reduce((sum, val) => sum + val, 0);
-        if (sumExps === 0) {
-                return Array(logits.length).fill(1 / logits.length); // Uniform if sum is zero
-        }
-        return exps.map(exp => exp / sumExps);
+  if (!logits || logits.length === 0) return [];
+  const maxLogit = Math.max(...logits.filter((l) => isFinite(l)), -Infinity);
+  if (!isFinite(maxLogit)) return Array(logits.length).fill(1 / logits.length); // Uniform if all are -Infinity
+  const exps = logits.map((logit) => Math.exp(logit - maxLogit));
+  const sumExps = exps.reduce((sum, val) => sum + val, 0);
+  if (sumExps === 0) {
+    return Array(logits.length).fill(1 / logits.length); // Uniform if sum is zero
+  }
+  return exps.map((exp) => exp / sumExps);
 }
 
 export function calculateEntropy(probabilities: number[]): number {
-        if (!probabilities || probabilities.length === 0) return 0;
-        return probabilities.reduce((entropy, p) => {
-                if (p > 0) {
-                        // Use log base 2 for entropy in bits
-                        return entropy - p * Math.log2(p);
-                }
-                return entropy;
-        }, 0);
+  if (!probabilities || probabilities.length === 0) return 0;
+  return probabilities.reduce((entropy, p) => {
+    if (p > 0) {
+      // Use log base 2 for entropy in bits
+      return entropy - p * Math.log2(p);
+    }
+    return entropy;
+  }, 0);
 }
-

@@ -1,0 +1,53 @@
+{
+  "id": "grammar_distribution-phrase31",
+  "input_string": "What is the tallest mountain in the world?",
+  "input_tokens": [
+    3923,
+    374,
+    279,
+    82717,
+    16700,
+    304,
+    279,
+    1917,
+    30
+  ],
+  "completion_tokens": [
+    5018,
+    1337,
+    3332,
+    9399,
+    2247,
+    1834,
+    3332,
+    16966,
+    1771,
+    2247,
+    72964,
+    3332,
+    46122,
+    2247,
+    4174,
+    3332
+  ],
+  "completion_strings": [
+    "{\"",
+    "type",
+    "\":\"",
+    "answer",
+    "\",\"",
+    "content",
+    "\":\"",
+    "mount",
+    "ains",
+    "\",\"",
+    "difficulty",
+    "\":\"",
+    "easy",
+    "\",\"",
+    "number",
+    "\":\""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

@@ -1,0 +1,327 @@
+:root {
+  --font-serif:
+    et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua",
+    Georgia, serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --line-height: 1.7;
+  --content-width: 740px;
+  /* Header background matches body */
+  --header-bg: var(--body-bg); /* Changed from #4A4A4A */
+  --body-bg: #fff;
+  --text-color: #333;
+  --heading-color: #111;
+  /* Muted, sophisticated link colors */
+  --link-color: #367588; /* Muted Teal/Blue */
+  --link-hover: #2a5a6a; /* Darker Muted Teal/Blue */
+  /* Text colors for light header */
+  --header-text: var(--text-color); /* Changed from #F5F5F5 */
+  --nav-link: var(--link-color); /* Changed from var(--header-text) */
+  --nav-link-hover: var(--link-hover); /* Changed from #FFFFFF */
+  --border-color: #eaeaea;
+  --subtle-text: #666;
+  --code-bg: #f0f0f0;
+  --code-text: #111;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: var(--font-scale);
+  line-height: var(--line-height);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  background-color: var(--body-bg);
+  -webkit-font-smoothing: antialiased; /* Smoother fonts */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 0.5em 0; /* Reduced vertical padding */
+  border-bottom: 1px solid var(--border-color); /* Changed from #333 */
+  width: 100%;
+}
+
+.header-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.2em; /* Reduced font size */
+  color: var(--header-text); /* Uses updated variable */
+  font-weight: 400; /* Reduced font weight (normal) */
+}
+
+header h1 a {
+  /* Apply text clipping effect */
+  background: linear-gradient(
+    45deg,
+    var(--link-color),
+    var(--link-hover)
+  ); /* Example gradient */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Make the text color transparent */
+  text-decoration: none;
+  font-weight: inherit; /* Inherit weight from h1 */
+  /* Add transition for potential hover effects */
+  transition: filter 0.3s ease;
+}
+header h1 a:hover {
+  /* Example hover effect: slightly change gradient or add brightness */
+  filter: brightness(1.2);
+  text-decoration: none; /* Keep underline off for clipped text */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 1.5em;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--nav-link); /* Use updated nav link color */
+  font-size: 1em;
+  padding: 0.5em 0;
+  border-bottom: 2px solid transparent; /* Reserve space for border */
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+  font-weight: 500; /* Slightly bolder nav links */
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--nav-link-hover); /* Use updated hover color */
+  border-bottom-color: var(--nav-link-hover); /* Use updated hover color */
+}
+
+main {
+  max-width: var(--content-width);
+  margin: 3em auto;
+  padding: 0 20px;
+}
+
+article {
+  margin-bottom: 4em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--border-color);
+}
+article:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0; /* No bottom margin for last article */
+}
+
+article h2 {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+  color: var(--heading-color);
+  font-family: var(--font-sans);
+  font-size: 1.8em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+article h2 a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit; /* Inherit weight from h2 */
+}
+article h2 a:hover {
+  text-decoration: underline;
+  color: var(--link-hover); /* Use updated hover color */
+}
+
+article time {
+  color: var(--subtle-text);
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 1.5em;
+  font-family: var(--font-sans);
+}
+
+article p {
+  margin-bottom: 1.2em;
+}
+
+footer {
+  max-width: var(--content-width);
+  margin: 3em auto 1.5em auto;
+  padding: 1.5em 20px;
+  color: var(--subtle-text);
+  font-family: var(--font-sans);
+  border-top: 1px solid var(--border-color);
+  text-align: center; /* Ensure text is centered */
+  font-size: 0.9em;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Optional: Style the footer link specifically if needed */
+footer a {
+  color: var(--subtle-text); /* Match surrounding text color */
+  font-weight: normal; /* Override default bold link style */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Allows vertical alignment */
+  vertical-align: middle; /* Align icons with text */
+  line-height: 1; /* Prevent extra space */
+}
+footer a:hover {
+  color: var(--text-color); /* Darken on hover */
+  /* text-decoration: underline; Removed underline for icon links */
+}
+
+/* Style for footer SVG icons */
+footer a svg.footer-icon {
+  width: 1em; /* Size relative to font size */
+  height: 1em; /* Size relative to font size */
+  fill: currentColor; /* Inherit color from parent 'a' tag */
+  vertical-align: middle; /* Align icon nicely */
+  margin-bottom: 0.1em; /* Fine-tune vertical alignment */
+  transition: fill 0.2s; /* Smooth color transition */
+}
+
+/* Hover effect specifically for the SVG fill */
+footer a:hover svg.footer-icon {
+  fill: var(--text-color); /* Change fill color on hover */
+}
+
+/* General link styling - Muted color, standard weight, underline on hover */
+/* Ensure this doesn't conflict with header h1 a */
+a:not(header h1 a) {
+  /* Apply general styles to links NOT in header h1 */
+  color: var(--link-color);
+  text-decoration: none; /* Underline on hover */
+  font-weight: 700; /* Make links bold */
+  transition:
+    color 0.2s,
+    text-decoration-color 0.2s; /* Smooth transition */
+}
+a:not(header h1 a):hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-decoration-color: var(
+    --link-hover
+  ); /* Ensure underline matches hover color */
+}
+
+/* Ensure heading links inherit heading weight (already covered by inherit above, but explicit is fine) */
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+}
+
+code {
+  font-family: var(--font-mono);
+  padding: 0.2em 0.4em;
+  margin: 0 0.1em;
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 3px;
+  font-size: 0.85em; /* Slightly smaller code */
+}
+
+pre {
+  padding: 1em;
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 3px;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+pre code {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: inherit; /* Inherit size from pre */
+}
+
+/* KaTeX specific styling */
+.katex {
+  font-size: 1.1em; /* Adjust KaTeX size relative to surrounding text */
+  color: var(--text-color); /* Ensure KaTeX uses body text color */
+}
+.katex-display {
+  margin: 1em 0;
+  overflow-x: auto; /* Allow scrolling for wide equations */
+  overflow-y: hidden;
+}
+
+/* Basic responsiveness */
+@media (max-width: 600px) {
+  .header-content {
+    /* Keep elements in a row, allow wrapping if needed */
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow nav to wrap below title if space is tight */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space out title and nav */
+    padding: 0 15px; /* Reduce horizontal padding */
+  }
+
+  header h1 {
+    font-size: 1.1em; /* Adjusted mobile font size */
+    margin-bottom: 0; /* Remove bottom margin if wrapped */
+    margin-right: 1em; /* Add some space between title and nav */
+  }
+
+  nav ul {
+    flex-wrap: nowrap; /* Keep nav items in one line initially */
+    padding-top: 0; /* Remove potential top padding */
+    justify-content: flex-end; /* Align nav items to the right */
+    flex-grow: 1; /* Allow nav to take remaining space */
+  }
+
+  nav li {
+    margin-left: 0.8em; /* Reduce space between nav items */
+    margin-right: 0;
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+
+  nav a {
+    font-size: 0.9em; /* Reduce nav link font size */
+    padding: 0.3em 0; /* Adjust padding */
+  }
+
+  main {
+    padding: 0 15px;
+    margin: 2em auto;
+  }
+
+  footer {
+    padding: 1.5em 15px;
+    margin: 2em auto 1em auto;
+  }
+
+  article h2 {
+    font-size: 1.6em;
+  }
+
+  code,
+  pre {
+    font-size: 0.8em; /* Further reduce code size on mobile */
+  }
+}

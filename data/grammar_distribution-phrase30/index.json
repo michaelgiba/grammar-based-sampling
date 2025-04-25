@@ -1,0 +1,41 @@
+{
+  "id": "grammar_distribution-phrase30",
+  "input_string": "Explain the difference between HTTP and HTTPS.",
+  "input_tokens": [
+    849,
+    21435,
+    279,
+    6811,
+    1990,
+    10339,
+    323,
+    62144,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    882,
+    794,
+    2994,
+    1359,
+    78191,
+    794,
+    2994,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "user",
+    "\":",
+    "null",
+    ",\"",
+    "assistant",
+    "\":",
+    "null",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

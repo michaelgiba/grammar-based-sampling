@@ -1,0 +1,35 @@
+{
+  "id": "grammar_distribution-phrase29",
+  "input_string": "Write a function that reverses a string.",
+  "input_tokens": [
+    8144,
+    264,
+    734,
+    430,
+    17888,
+    288,
+    264,
+    925,
+    13
+  ],
+  "completion_tokens": [
+    5018,
+    817,
+    44134,
+    794,
+    3934,
+    92,
+    100351
+  ],
+  "completion_strings": [
+    "{\"",
+    "use",
+    "_numpy",
+    "\":",
+    "false",
+    "}",
+    ""
+  ],
+  "num_steps": 16,
+  "model": "phi4"
+}

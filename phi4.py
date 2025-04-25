@@ -1,4 +1,4 @@
-from functools import partial
+from functools import partial, cache
 from lark import Lark
 from llama_cpp import Llama
 from typing import Callable
@@ -9,15 +9,11 @@ import argparse
 import os
 import json
 
-llm = Llama(
-    model_path="/home/michaelgiba/code/github/survivor/models/phi-4-IQ2_M.gguf",
-    n_gpu_layers=-1,
-    seed=1337,
-)
-NUM_TOKENS = 100352
-FAKE_EOS = NUM_TOKENS - 1
+# Global constants that don't depend on the model
 TOP_K = 50
+NUM_STEPS = 16
 
+# Lark parser remains global as it's static configuration
 parser = Lark(
     """
     ?start: object
@@ -33,7 +29,7 @@ parser = Lark(
     object : "{" pair ("," pair)* "}"
     pair   : string ":" value
 
-    letter: "a" | "b" | "c" | "d" | "e" | "f" 
+    letter: "a" | "b" | "c" | "d" | "e" | "f"
         | "i" | "j" | "k" | "l" | "m" | "n"
         | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v"
         | "w" | "x" | "y" | "z" | "_"
@@ -94,6 +90,16 @@ EXAMPLE_PHRASES = [
     b"Generate a JSON object representing a user profile.",
 ]
 
+@cache
+def get_llm(model_path: str) -> Llama:
+    """Initializes and returns a cached Llama instance."""
+    print(f"Loading Llama model from: {model_path}")
+    return Llama(
+        model_path=model_path,
+        n_gpu_layers=-1,
+        seed=1337,
+        verbose=False, # Reduce llama.cpp verbosity
+    )
 
 def _softmax_and_sample(
     input_tokens,
@@ -103,6 +109,9 @@ def _softmax_and_sample(
     id_string: str,
     step_index: int,
     output_dir: str,
+    llm: Llama, # Pass llm instance
+    num_tokens: int, # Pass num_tokens
+    fake_eos: int, # Pass fake_eos
 ):
     shifted_logits = input_logits - np.max(input_logits)
     exp_logits = np.exp(shifted_logits)
@@ -123,6 +132,9 @@ def _record_logits(
     id_string: str,
     step_index: int,
     output_dir: str,
+    llm: Llama, # Pass llm instance
+    num_tokens: int, # Pass num_tokens
+    fake_eos: int, # Pass fake_eos
 ):
     # Ensure we don't request more elements than available
     actual_k = min(TOP_K, len(logits))
@@ -145,13 +157,19 @@ def _record_logits(
 
     filename = f"{id_string}-step{step_index}.npy"
     filepath = os.path.join(output_dir, filename)
-    print(f"Saving top {actual_k} logits (index, value) to: {filepath}")
+    print(f"Saving top {actual_k} logits (index, value) to: {filepath}") # Reduce verbosity
     np.save(filepath, top_data)
-    
+
     return logits
 
 
-def _rollout(context_tokens, logit_processors: list, num_steps: int) -> list[int]:
+def _rollout(
+    context_tokens: list[int],
+    logit_processors: list,
+    num_steps: int,
+    llm: Llama, # Pass llm instance
+    fake_eos: int, # Pass fake_eos
+) -> list[int]:
     generated_tokens = []
     for step_index in range(num_steps):
         si = len(context_tokens) - 1
@@ -174,7 +192,7 @@ def _rollout(context_tokens, logit_processors: list, num_steps: int) -> list[int
         context_tokens.append(k)
         generated_tokens.append(k)
         print(llm.detokenize(context_tokens))
-        if k == FAKE_EOS:
+        if k == fake_eos:
             break
 
     return context_tokens
@@ -188,6 +206,9 @@ def _grammar_constrain(
     id_string: str,
     step_index: int,
     output_dir: str,
+    llm: Llama, # Pass llm instance
+    num_tokens: int, # Pass num_tokens
+    fake_eos: int, # Pass fake_eos
 ):
     token_queue = []
     for token_index, logit in enumerate(input_logits):
@@ -226,11 +247,12 @@ def _grammar_constrain(
             continue
 
     if found_matches == 0:
-        new_logits[FAKE_EOS] = 0
+        new_logits[fake_eos] = 0
 
     return new_logits
 
 
+# Define strategies referencing the functions
 SAMPLER_STRATEGIES = {
     "greedy": [
         _record_logits,
@@ -252,7 +274,13 @@ SAMPLER_STRATEGIES = {
 
 
 def _logit_processors(
-    strategy: str, input_: list[int], id_string: str, output_dir: str
+    strategy: str,
+    input_: list[int],
+    id_string: str,
+    output_dir: str,
+    llm: Llama, # Pass llm instance
+    num_tokens: int, # Pass num_tokens
+    fake_eos: int, # Pass fake_eos
 ) -> list[Callable]:
     # Initialize step_index to 0, it will be updated in _rollout
     return [
@@ -262,31 +290,34 @@ def _logit_processors(
             id_string=id_string,
             step_index=0,
             output_dir=output_dir,
+            llm=llm, # Pass llm instance
+            num_tokens=num_tokens, # Pass num_tokens
+            fake_eos=fake_eos, # Pass fake_eos
         )
         for fn in SAMPLER_STRATEGIES[strategy]
     ]
 
-def _write_vocab_file(output_path):
-    print(output_path)
-    output_array = ["|unk|"] * NUM_TOKENS
-    for i in range(NUM_TOKENS):
+def _write_vocab_file(output_path: str, llm: Llama, num_tokens: int):
+    """Writes the model's vocabulary to a JSON file."""
+    output_array = ["|unk|"] * num_tokens
+    for i in range(num_tokens):
         try:
+            # Use llm instance passed as argument
             output_array[i] = llm.detokenize([i]).decode()
         except Exception:
-            pass
+            pass # Keep "|unk|"
 
     with open(output_path, "w") as f:
         json.dump(output_array, f)
 
 
-def _safe_detokenize(token_indices: list[int]) -> str:
+def _safe_detokenize(token_indices: list[int], llm: Llama) -> str:
+    """Safely detokenizes, returning '|unk|' on error."""
     try:
+        # Use llm instance passed as argument
         return llm.detokenize(token_indices).decode()
     except UnicodeDecodeError:
         return "|unk|"
-
-
-NUM_STEPS = 16
 
 
 def main():
@@ -294,56 +325,73 @@ def main():
         description="Run LLM sampling with different strategies and save logits."
     )
     parser.add_argument(
+        "--model-path",
+        required=True,
+        help="Path to the GGUF model file.",
+    )
+    parser.add_argument(
         "--output-dir",
         required=True,
         help="Directory to save the output logits (.npy files).",
     )
     args = parser.parse_args()
+    llm_instance = get_llm(args.model_path)
 
+    num_tokens = llm_instance.n_vocab()
+    fake_eos = num_tokens - 1 # Assuming EOS is the last token
+
+    os.makedirs(args.output_dir, exist_ok=True)
     vocab_path = os.path.join(args.output_dir, "vocab.json")
-    _write_vocab_file(vocab_path)
+    _write_vocab_file(vocab_path, llm_instance, num_tokens) # Pass llm instance
 
-    for strategy in ["grammar_distribution"]:
+    for strategy in SAMPLER_STRATEGIES: # Add other strategies as needed
         for pidx, phrase in enumerate(EXAMPLE_PHRASES):
             id_string = f"{strategy}-phrase{pidx}"
 
             id_path = os.path.join(args.output_dir, id_string)
-
             os.makedirs(id_path, exist_ok=True)
 
-            
-            input_tokens = list(llm.tokenize(phrase))            
+            input_tokens = list(llm_instance.tokenize(phrase))
             context_tokens = list(input_tokens)
-            
+
             logit_processor_list = _logit_processors(
-                strategy, context_tokens, id_string, id_path
+                strategy,
+                context_tokens,
+                id_string,
+                id_path,
+                llm_instance, # Pass llm instance
+                num_tokens, # Pass num_tokens
+                fake_eos, # Pass fake_eos
             )
             context_tokens = _rollout(
                 context_tokens.copy(),
                 logit_processor_list,
                 num_steps=NUM_STEPS,
+                llm=llm_instance, # Pass llm instance
+                fake_eos=fake_eos, # Pass fake_eos
             )
-            
+
             completion_tokens = context_tokens[len(input_tokens):]
 
-            with open(os.path.join(id_path, "index.json"), "w") as f:
-                json.dump(
-                    {
-                        "id": id_string,
-                        "input_string": phrase.decode(),
-                        "input_tokens": input_tokens,
-                        "completion_tokens": completion_tokens,
-                        "completion_strings": [
-                            _safe_detokenize([context_token])
-                            for context_token in completion_tokens
-                        ],
-                        "num_steps": NUM_STEPS,
-                        "model": "phi4",
-                    },
-                    f,
-                    indent=2,
-                )
-
+            # Save results
+            output_data = {
+                "id": id_string,
+                "input_string": phrase.decode(errors='replace'), # Handle potential decode errors
+                "input_tokens": input_tokens,
+                "completion_tokens": completion_tokens,
+                "completion_strings": [
+                    _safe_detokenize([context_token], llm_instance) # Pass llm instance
+                    for context_token in completion_tokens
+                ],
+                "full_completion_string": _safe_detokenize(completion_tokens, llm_instance),
+                "num_steps": len(completion_tokens), # Actual steps taken
+                "max_steps_requested": NUM_STEPS,
+                "model_path": args.model_path,
+                "strategy": strategy,
+            }
+            output_json_path = os.path.join(id_path, "index.json")
+            with open(output_json_path, "w") as f:
+                json.dump(output_data, f, indent=2)
 
 
 

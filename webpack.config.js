@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development', // Use 'production' for builds
-  entry: './src/index.ts', // Changed entry point to .ts
+  entry: ['./src/index.ts'], // Include style.css here
   devtool: 'inline-source-map', // For easier debugging
   devServer: {
     static: [
@@ -14,7 +14,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Grammar-Based Sampling Visualizations',
-      template: './dist/index.html', // Use our html file as template
+      template: './index.html', // Use our html file as template
     }),
   ],
   output: {
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader'], // Make sure this rule exists
       },
     ],
   },

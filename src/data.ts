@@ -14,6 +14,85 @@ export interface SamplingAnalysisData {
   completionTokens: Vocabulary;
 }
 
+const INVALID_FILES = [
+  "grammar_distribution-phrase0-step14.npy",
+  "grammar_distribution-phrase0-step14.npy",
+  "grammar_distribution-phrase1-step7.npy",
+  "grammar_distribution-phrase1-step7.npy",
+  "grammar_distribution-phrase10-step12.npy",
+  "grammar_distribution-phrase10-step12.npy",
+  "grammar_distribution-phrase11-step15.npy",
+  "grammar_distribution-phrase11-step15.npy",
+  "grammar_distribution-phrase12-step7.npy",
+  "grammar_distribution-phrase12-step7.npy",
+  "grammar_distribution-phrase13-step14.npy",
+  "grammar_distribution-phrase13-step14.npy",
+  "grammar_distribution-phrase17-step7.npy",
+  "grammar_distribution-phrase17-step7.npy",
+  "grammar_distribution-phrase18-step8.npy",
+  "grammar_distribution-phrase18-step8.npy",
+  "grammar_distribution-phrase2-step9.npy",
+  "grammar_distribution-phrase2-step9.npy",
+  "grammar_distribution-phrase20-step14.npy",
+  "grammar_distribution-phrase20-step14.npy",
+  "grammar_distribution-phrase22-step10.npy",
+  "grammar_distribution-phrase22-step10.npy",
+  "grammar_distribution-phrase23-step13.npy",
+  "grammar_distribution-phrase23-step13.npy",
+  "grammar_distribution-phrase24-step6.npy",
+  "grammar_distribution-phrase24-step6.npy",
+  "grammar_distribution-phrase25-step10.npy",
+  "grammar_distribution-phrase25-step10.npy",
+  "grammar_distribution-phrase27-step13.npy",
+  "grammar_distribution-phrase27-step13.npy",
+  "grammar_distribution-phrase28-step12.npy",
+  "grammar_distribution-phrase28-step12.npy",
+  "grammar_distribution-phrase29-step7.npy",
+  "grammar_distribution-phrase29-step7.npy",
+  "grammar_distribution-phrase30-step10.npy",
+  "grammar_distribution-phrase30-step10.npy",
+  "grammar_distribution-phrase5-step7.npy",
+  "grammar_distribution-phrase5-step7.npy",
+  "grammar_distribution-phrase6-step12.npy",
+  "grammar_distribution-phrase6-step12.npy",
+  "grammar_greedy-phrase10-step10.npy",
+  "grammar_greedy-phrase10-step10.npy",
+  "grammar_greedy-phrase11-step8.npy",
+  "grammar_greedy-phrase11-step8.npy",
+  "grammar_greedy-phrase12-step14.npy",
+  "grammar_greedy-phrase12-step14.npy",
+  "grammar_greedy-phrase15-step14.npy",
+  "grammar_greedy-phrase15-step14.npy",
+  "grammar_greedy-phrase16-step11.npy",
+  "grammar_greedy-phrase16-step11.npy",
+  "grammar_greedy-phrase17-step7.npy",
+  "grammar_greedy-phrase17-step7.npy",
+  "grammar_greedy-phrase18-step11.npy",
+  "grammar_greedy-phrase18-step11.npy",
+  "grammar_greedy-phrase19-step11.npy",
+  "grammar_greedy-phrase19-step11.npy",
+  "grammar_greedy-phrase21-step8.npy",
+  "grammar_greedy-phrase21-step8.npy",
+  "grammar_greedy-phrase23-step14.npy",
+  "grammar_greedy-phrase23-step14.npy",
+  "grammar_greedy-phrase25-step6.npy",
+  "grammar_greedy-phrase25-step6.npy",
+  "grammar_greedy-phrase26-step7.npy",
+  "grammar_greedy-phrase26-step7.npy",
+  "grammar_greedy-phrase28-step6.npy",
+  "grammar_greedy-phrase28-step6.npy",
+  "grammar_greedy-phrase29-step6.npy",
+  "grammar_greedy-phrase29-step6.npy",
+  "grammar_greedy-phrase3-step7.npy",
+  "grammar_greedy-phrase3-step7.npy",
+  "grammar_greedy-phrase30-step14.npy",
+  "grammar_greedy-phrase30-step14.npy",
+  "grammar_greedy-phrase31-step11.npy",
+  "grammar_greedy-phrase31-step11.npy",
+  "grammar_greedy-phrase7-step14.npy",
+  "grammar_greedy-phrase7-step14.npy",
+];
+
 export interface RenderData {
   originalLogits: LogitsSequence;
   tokens: Vocabulary;
@@ -22,9 +101,7 @@ export interface RenderData {
 /**
  * Load the vocabulary from a JSON file.
  */
-export async function loadVocabulary(
-  basePath: string,
-): Promise<Vocabulary> {
+export async function loadVocabulary(basePath: string): Promise<Vocabulary> {
   const vocabRes = await fetch(`${basePath}/vocab.json`);
   if (!vocabRes.ok) {
     throw new Error(`Failed to fetch vocab.json: ${vocabRes.statusText}`);
@@ -66,13 +143,17 @@ export async function loadSamplingAnalysisData(
   if (typeof num_steps !== "number" || num_steps < 0) {
     throw new Error(`Invalid num_steps received for id ${id}: ${num_steps}`);
   }
-  
 
   const originalTokenIndicesAndLogits: LogitsSequence = [];
   const loader = new npyjs(); // Instantiate loader once for efficiency
 
   for (let step = 0; step < num_steps; step++) {
-    const npyPath = `${basePath}/${id}/${id}-step${step}.npy`;
+    const fileNaeme = `${id}-step${step}.npy`;
+    // Check if the file is in the invalid list
+    if (INVALID_FILES.includes(fileNaeme)) {
+      break;
+    }
+    const npyPath = `${basePath}/${id}/${fileNaeme}`;
     try {
       const res = await fetch(npyPath);
       if (!res.ok) {
@@ -132,85 +213,3 @@ export async function loadAllSamplingAnalysisData(
 ): Promise<SamplingAnalysisData[]> {
   return Promise.all(ids.map((id) => loadSamplingAnalysisData(id, basePath)));
 }
-
-export const mockSamplingAnalysisData = (): SamplingAnalysisData[] => {
-  const allTokens: Vocabulary = [
-    ..."abcdefghijklmn89",
-    " ",
-    ".",
-    ",",
-    "!",
-    "?",
-    "'",
-    '"',
-    "\n",
-    "<|endoftext|>",
-  ];
-  const numTokens = allTokens.length;
-
-  const singleMockAnalysisData = (
-    id: string,
-    inputText: string,
-  ): SamplingAnalysisData => {
-    const sampledCharacters: Completion = inputText.split("");
-    const logits: LogitsSequence = [];
-    const tokenIndices: LogitsSequence = [];
-    const numSteps = sampledCharacters.length;
-
-    for (let i = 0; i < numSteps; i++) {
-      const stepLogits: Logits = new Array(numTokens);
-      let maxLogit = -Infinity;
-      let maxIndex = -1;
-      const targetChar = sampledCharacters[i];
-      const targetIndex = allTokens.indexOf(targetChar);
-
-      for (let j = 0; j < numTokens; j++) {
-        let logit = Math.log(Math.random() + 1e-2) * 1.5;
-        if (j === targetIndex) {
-          logit = Math.max(logit, 2.0 + Math.random() * 2);
-        } else if (
-          allTokens[j].toLowerCase() === targetChar.toLowerCase() &&
-          targetChar !== allTokens[j]
-        ) {
-          logit += Math.random() * 1.5;
-        } else if (j < 52 && Math.random() < 0.1) {
-          logit += Math.random() * 1.0 - 0.5;
-        } else if (allTokens[j] === " " && Math.random() < 0.15) {
-          logit += Math.random() * 1.0;
-        }
-        stepLogits[j] = logit;
-        if (logit > maxLogit) {
-          maxLogit = logit;
-          maxIndex = j;
-        }
-      }
-
-      if (targetIndex !== -1 && targetIndex !== maxIndex) {
-        stepLogits[targetIndex] = maxLogit + 0.1 + Math.random() * 0.2;
-      } else if (targetIndex === -1) {
-        console.warn(
-          `Sampled character "${targetChar}" not found in allTokens.`,
-        );
-        stepLogits[0] = Math.max(stepLogits[0], 1.0);
-      }
-
-      tokenIndices.push(new Array(numTokens).fill(0).map((_, idx) => idx));
-      logits.push(stepLogits);
-    }
-
-    return {
-      id,
-      inputText: inputText,
-      sampledCharacters,
-      originalLogitsValues: logits,
-      originalLogitTokenIndex: tokenIndices,
-      completionTokens: allTokens,
-    };
-  };
-
-  return [
-    singleMockAnalysisData("Hello World", "Hello world!"),
-    singleMockAnalysisData("Quick Brown Fox", "The quick brown fox"),
-    singleMockAnalysisData("Code Example", "const x = 10;"),
-  ];
-};
